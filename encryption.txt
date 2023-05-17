@@ -1,0 +1,40 @@
+Sure! Let's walk through an example of the RSA algorithm step by step. For this example, we will use small prime numbers to keep the calculations simple.
+
+    Key Generation:
+    Let's choose two prime numbers, p = 7 and q = 11.
+    n = p * q = 7 * 11 = 77.
+    Compute the Euler's totient function: φ(n) = (p - 1) * (q - 1) = 6 * 10 = 60.
+    Choose a public exponent, e. Let's use e = 13, which is coprime to 60.
+    To find the private exponent, d, we need to compute the modular multiplicative inverse of e modulo φ(n).
+    Using the Extended Euclidean Algorithm or other methods, we find that d = 37 is the multiplicative inverse of e modulo 60.
+
+So, our public key is (n, e) = (77, 13), and our private key is (n, d) = (77, 37).
+
+    Encryption:
+    Let's encrypt the plaintext message "HELLO" using the public key (n, e) = (77, 13).
+
+First, we need to convert the plaintext to numerical representation. Let's use ASCII values:
+H = 72, E = 69, L = 76, O = 79.
+
+For each character, we apply the encryption formula:
+C = M^e mod n
+For H: C = 72^13 mod 77 = 49.
+For E: C = 69^13 mod 77 = 54.
+For L: C = 76^13 mod 77 = 57.
+For O: C = 79^13 mod 77 = 16.
+
+So the ciphertext is "49 54 57 16".
+
+    Decryption:
+    To decrypt the ciphertext, we use the private key (n, d) = (77, 37).
+
+For each ciphertext value, we apply the decryption formula:
+M = C^d mod n
+For 49: M = 49^37 mod 77 = 72 (ASCII value of H).
+For 54: M = 54^37 mod 77 = 69 (ASCII value of E).
+For 57: M = 57^37 mod 77 = 76 (ASCII value of L).
+For 16: M = 16^37 mod 77 = 79 (ASCII value of O).
+
+So the decrypted plaintext is "HELLO".
+
+In this example, we encrypted and decrypted a simple message using the RSA algorithm. In practice, larger prime numbers and key sizes would be used for stronger security.
